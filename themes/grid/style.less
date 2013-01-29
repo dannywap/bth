@@ -1,0 +1,301 @@
+/** --------------------------------------------------------------
+ * Reset. http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126
+ *
+ */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,
+figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,
+time,mark,audio,video{margin:0;padding:0;border:0;font-size:100.01%;font:inherit;vertical-align:baseline;}
+body{line-height:1;}
+ol,ul{list-style: none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+
+
+/** --------------------------------------------------------------
+ * HTML5 elements.
+ *
+ */
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]){display:none;}
+[hidden]{display:none;}
+
+
+
+/*
+*  Description: Core grid theme with LESS
+*/
+
+
+/**
+* Import semantic.gs for "The Semantic Grid System"
+*/
+@import url(semantic.gs/stylesheets/less/grid.less);
+
+/* Wrap elements to site width in grid layout*/
+.wrap() {width:@total-width;margin:0 auto;.clearfix();}
+
+
+/*
+* LESS Variables
+*/
+@colmaxdark: #000;
+@colmeddark: #000;
+@colmindark: #000;
+@colminlight: #000;
+@colmedlight: #000;
+@colmaxlight: #000;
+
+@colbggreen: #efe;
+@colbgblue: #eef;
+@colbgyellow: #eff;
+@colbgred: #fee;
+@coltxtgreen: green;
+@coltxtblue: blue;
+@coltxtyellow: yellow;
+@coltxtred: red;
+
+@colbodybg: #eee;
+@colcolsbg: #fff;
+
+@font-family-cambria    = Cambria, Georgia, Times, 'Times New Roman', serif;
+@font-family-helvetica  = Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-monospace  = "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+
+
+
+/* _fontdefault: 1em Verdana, Arial, Helvetica, sans-serif; */
+@fontdefault: @font-family-helvetica;
+@fontsmaller: 9px;
+
+@magic-number: 25px;
+
+
+/*
+* Structure
+*/
+
+html{}
+body{
+	background-color:@colbodybg;
+	font:100.01%/1.375 @font-family-helvetica;
+	margin: 0;
+	padding: 0;
+}
+div{-moz-border-radius:7px;border-radius:7px;}
+
+.headings-general() {font-weight:normal;color:#111;margin-bottom:@magic-number;font-family:@font-family-cambria}
+h1{.headings-general;font-size:2.375em;line-height:1.1579;border-bottom:1px solid #ccc;margin-bottom:@magic-number - 1px;}
+h2{.headings-general;font-size:1.875em;line-height:1.4667;}
+h3{.headings-general;font-size:1.375em;line-height:1;}
+h4{.headings-general;font-size:1.25em;line-height:1.1;}
+h5{.headings-general;font-size:1em;font-weight:bold;}
+h6{.headings-general;font-size:1em;font-weight:bold;margin-bottom:0;}
+h1 img,h2 img,h3 img,h4 img,h5 img,h6 img{margin:0;}
+
+@link-color: #600;
+/* Text elements */
+p{margin-bottom:1.375em;}
+a{color:@link-color;text-decoration:underline;
+  &:focus,&:hover{color:lighten(@link-color, 10%);text-decoration:none;}
+}
+blockquote{margin-left:1em;margin-bottom:1.375em;}
+strong,dfn{font-weight:bold;}
+em,dfn{font-style:italic;}
+pre{margin-bottom:1.375em;white-space:pre;}
+pre,code,tt,.code{font:1em/1.375 @font-family-monospace;}
+
+/* Lists */
+li ul,li ol{margin:0;}
+ul,ol{margin:0.6875em 1.5em 1.375em 0;padding-left:1.5em;}
+ul{list-style-type:disc;}
+ol{list-style-type:decimal;}
+dl{margin:0 0 1.375em 0;}
+dl dt{font-weight:bold;}
+dd{margin-left:1.5em;}
+
+/* Tables. Because of the need for padding on TH and TD, the vertical rhythm
+  on table cells has to be 33px, instead of the standard 22px or 44px
+  of other elements. */
+table{margin-bottom:1.375em;width:100%;}
+caption{text-align:left;font-style:italic;}
+thead{border-bottom:2px solid #222;}
+th{vertical-align:bottom;font-weight:bold;text-align:left;}
+th,td{padding:5px 10px 5px 5px;}
+tbody tr:nth-child(even) td, tbody tr.even td {}
+tbody tr{border-bottom:1px solid #eee;
+  &:hover{color:#000;}
+}
+tfoot{font-style:italic;}
+
+.info {	color: @coltxtgreen;	background-color: @colbggreen;	padding: 10px;}
+.notice {	color: @coltxtblue;	background-color: @colbgblue;	padding: 10px;}
+.success {	color: @coltxtgreen;	background-color: @colbggreen;	padding: 10px;}
+.warning {	color: @coltxtyellow;	background-color: @colbgyellow;	padding: 10px;}
+.error {	color: @coltxtred;	background-color: @colbgred;	padding: 10px;}
+.alert {	color: @coltxtred;	background-color: @colbgred;	padding: 10px;}
+
+/*
+#login-menu{
+	float: right;
+	width: 82px;
+}
+
+#banner{
+	float: left;
+}
+.clear-both {
+	clear: both;
+	width: 0px;	height: 0px;
+}
+
+.login_menu {
+	width: 120px;
+	font-size: 10px;
+}
+*/
+
+/** --------------------------------------------------------------
+* Navbar
+*/
+#navbar{
+  ul.menu{list-style-type:none;padding:2px 8px;margin:0;
+    li{padding:0;margin:0;display:inline;
+      a{padding:2px 8px;text-decoration:none;border:2px solid transparent;
+        &:hover{background:darken(@colbodybg,5%);border-left: 2px solid #999;
+								border-top: 2px solid #999;
+								border-right: 2px solid #999;
+								border-bottom: 2px solid transparent;
+								-moz-border-radius:3px;border-radius:3px;}
+        &.selected{background:@colbodybg;border-left: 2px solid #999;
+								border-top: 2px solid #999;
+								border-right: 2px solid #999;
+								border-bottom: 2px solid transparent;
+								-moz-border-radius:3px;border-radius:3px;}
+      }
+    }
+  }
+}
+
+
+
+.validation-failed { border: 2px solid red; margin-bottom: 0px; padding-bottom: 0px;}
+.validation-message { padding-left: 20px; 0px; margin: 0px;}
+.validation-message li {  margin: 0px; font-size: 9px; color: @coltxtred; }
+
+.smaller-text { font-size: @fontsmaller; }
+
+
+
+
+
+/** --------------------------------------------------------------
+* The header area.
+*
+*/
+.tablecell() {display:table-cell;vertical-align:middle;text-align:center;}
+#outer-wrap-header{margin-bottom:@magic-number;background-color:@colcolsbg;border-bottom:1px solid #bbb;}
+#inner-wrap-header{.wrap();}
+#header{.column(12);margin-top:@magic-number/2;background-color:@colcolsbg;}
+
+
+/** --------------------------------------------------------------
+* Login menu
+*/
+#login-menu{float:right;font-size:smaller;
+  img.gravatar{vertical-align:middle;}
+  a{text-decoration:none;}
+  a:hover{text-decoration:underline;}
+}
+
+
+/** --------------------------------------------------------------
+* Banner
+*/
+/* #banner {display:table;margin-bottom:0px; */
+#banner {display:table;margin-bottom:0px;
+  #site-logo{display:table-cell; vertical-align:middle; margin-left:0.5em;}
+  #banner-wrap{display:table-cell;
+		#site-title{display:block;font-size:1em;line-height:12px;padding-left:0.2em;padding-bottom:0em;
+		a{text-decoration:none;margin-bottom:0px;padding-bottom:0px;color:#09d;}
+		}
+		#site-slogan{display:block;font-size:0.8em;padding-left:0.2em;padding-top:0px;}
+  }
+}
+
+
+/** --------------------------------------------------------------
+* The flash area.
+*
+*/
+#outer-wrap-flash{}
+#inner-wrap-flash{.wrap();height:@magic-number*3;margin-bottom:@magic-number;margin-top:@magic-number;}
+#flash{.column(12);background-color:@colcolsbg;height:100%;}
+
+
+/** --------------------------------------------------------------
+* The featured area.
+*
+*/
+#outer-wrap-featured{}
+#inner-wrap-featured{.wrap;height:@magic-number*5;margin-bottom:@magic-number;}
+#featured{}
+
+#featured-first,
+#featured-middle,
+#featured-last{.column(4);background-color:@colcolsbg;height:100%;}
+
+
+/** --------------------------------------------------------------
+* The main content area.
+*
+*/
+#outer-wrap-main{}
+#inner-wrap-main{.wrap;margin-bottom:@magic-number;}
+#main{}
+
+#primary{.column(8);background-color:@colcolsbg;}
+#sidebar{.column(4);background-color:@colcolsbg;}
+
+
+/** --------------------------------------------------------------
+* The triptych area.
+*
+*/
+#outer-wrap-triptych{}
+#inner-wrap-triptych{.wrap();height:@magic-number*5;margin-bottom:@magic-number;}
+#triptych{height:inherit;}
+
+#triptych-first,
+#triptych-middle,
+#triptych-last{.column(4);background-color:@colcolsbg;height:100%;}
+
+
+/** --------------------------------------------------------------
+* The footer column area.
+*
+*/
+#outer-wrap-footer-column{background-color:@colcolsbg;border-top:1px solid #bbb;}
+#inner-wrap-footer-column{.wrap();height:@magic-number*5;padding-bottom:@magic-number;}
+#footer{height:inherit;}
+
+#footer-column-one,
+#footer-column-two,
+#footer-column-three,
+#footer-column-four{.column(3);font-size:0.9em;margin-top:1em;height:100%;
+background-color:darken(@colcolsbg,5%);}
+
+
+/** --------------------------------------------------------------
+* The footer area.
+*
+*/
+#outer-wrap-footer{background-color:@colcolsbg;}
+#inner-wrap-footer{.wrap();}
+#footer{.column(12);font-size:0.80em;color:#666;padding-bottom:@magic-number;}
+
+

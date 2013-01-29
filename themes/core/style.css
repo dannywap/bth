@@ -1,0 +1,53 @@
+/**
+* Description: Core theme for Lydia
+*/
+
+/**
+* Structure
+*/
+html{}
+body{
+	background-color:#eee;
+	font: 1em Verdana, Arial, Helvetica, sans-serif;
+}
+
+#header,
+#main,
+#footer {
+  margin:0 auto;
+  width:970px;
+  background-color:#fff;
+  padding: 1em;
+}
+
+.info {	color: green;	background-color: #efe;	padding: 10px;}
+.notice {	color: blue;	background-color: #eef;	padding: 10px;}
+.success {	color: green;	background-color: #efe;	padding: 10px;}
+.warning {	color: yellow;	background-color: #eff;	padding: 10px;}
+.error {	color: red;	background-color: #fee;	padding: 10px;}
+.alert {	color: red;	background-color: #fee;	padding: 10px;}
+
+#login-menu{
+	float: right;
+	width: 82px;
+}
+
+#banner{
+	float: left;
+
+}
+.clear-both {
+	clear: both;
+	width: 0px;	height: 0px;
+}
+
+.login_menu {
+	width: 120px;
+	font-size: 10px;
+}
+
+.validation-failed { border: 2px solid red; margin-bottom: 0px; padding-bottom: 0px;}
+.validation-message { padding-left: 20px; 0px; margin: 0px;}
+.validation-message li {  margin: 0px; font-size: 9px; color: red; }
+
+.smaller-text { font-size: 9px; }
