@@ -3,8 +3,11 @@
 <head>
 	<meta charset='utf-8'/>
 	<title><?=$title?></title>
-	<link rel='shortcut icon' href='<?=$favicon?>'/>
-	<link rel='stylesheet' href='<?=$stylesheet?>'/>
+	<!-- <link rel='shortcut icon' href='<?=$favicon?>'/>
+	<link rel='stylesheet' href='<?=$stylesheet?>'/> --> 
+	
+	<link rel='shortcut icon' href='<?=theme_url($favicon)?>'/>
+	<link rel='stylesheet' href='<?=theme_url($stylesheet)?>'/>
 </head>
 <body>
 <div id='wrap-header'>

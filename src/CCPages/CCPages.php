@@ -4,7 +4,7 @@
 *
 * @package LydiaCore
 */
-class CCBlog extends CObject implements IController {
+class CCPages extends CObject implements IController {
 
 
   /**
@@ -18,12 +18,11 @@ class CCBlog extends CObject implements IController {
   /**
    * Display all content of the type "post".
    */
-  public function Index($orderfield='title',$orderorder='DESC') {
+  public function Index() {
     $content = new CMContent();
-    $this->views->SetTitle('Blog')
+    $this->views->SetTitle('Pages')
                 ->AddInclude(__DIR__ . '/index.tpl.php', array(
-                  // 'contents' => $content->ListAll(array('type'=>'post', 'order-by'=>'title', 'order-order'=>'DESC')),
-                  'contents' => $content->ListAll(array('type'=>'post', 'order-by'=>$orderfield, 'order-order'=>$orderorder)),
+                  'contents' => $content->ListAll(array('type'=>'page', 'order-by'=>'title', 'order-order'=>'DESC')),
                 ),'primary');
   }
 

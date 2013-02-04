@@ -6,7 +6,7 @@
   <ul>
   <?php foreach($contents as $val):?>
     <li><?=$val['id']?>, <?=$val['title']?> by <?=$val['owner']?> <a href='<?=create_url("content/edit/{$val['id']}")?>'>edit</a> <a href='<?=create_url("page/view/{$val['id']}")?>'>view</a>
-	<?php if(CLydia::Instance()->user['isAuthenticated'] && (CLydia::Instance()->user['hasRoleAdministrator'] || $val['owner']==CLydia::Instance()->user['acronym'])): ?>
+	<?php if(CLydia::Instance()->user['isAuthenticated'] && (CLydia::Instance()->user['hasRoleAdmin'] || $val['owner']==CLydia::Instance()->user['acronym'])): ?>
 		<a href='<?=create_url("content/delete/{$val['id']}")?>'>delete</a>
 	<?php endif ?>
 	</li>
@@ -18,7 +18,11 @@
 
 <h2>Actions</h2>
 <ul>
-  <li><a href='<?=create_url('content/init')?>'>Init database, create tables and sample content</a>
-  <li><a href='<?=create_url('content/create')?>'>Create new content</a>
-  <li><a href='<?=create_url('blog')?>'>View it as Blog</a> 
+  <!-- <li><a href='<?=create_url('content/init')?>'>Init database, create tables and sample content</a> -->
+  <?php if(CLydia::Instance()->user['isAuthenticated']){ ?>
+	<li><a href='<?=create_url('content/create')?>'>Create new content</a>
+  <?php }else{ ?>
+	<li><a href='<?=create_url('user/login')?>'>Please login to add new content</a>
+  <?php } ?>
+    <li><a href='<?=create_url('blog')?>'>View it as Blog</a> 
 </ul>

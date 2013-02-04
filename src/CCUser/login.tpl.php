@@ -1,10 +1,4 @@
 <h1>User Login</h1>
-<p>Following users should exist and work:</p>
-<ul>
-  <li>doe/doe</li>
-  <li>root/root</li>
-  <li>root@dbwebb.se/root (should also work)</li>
-</ul>
 <p>Login using your acronym or email.</p>
 <?=$login_form->GetHTML('form')?>
 <fieldset>

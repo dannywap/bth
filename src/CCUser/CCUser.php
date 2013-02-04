@@ -23,7 +23,6 @@ class CCUser extends CObject implements IController {
                 ->AddInclude(__DIR__ . '/index.tpl.php', array(
                   'is_authenticated'=>$this->user['isAuthenticated'],
                   'user'=>$this->user,
-				  
                 ),'primary');
   }
   
@@ -34,14 +33,70 @@ class CCUser extends CObject implements IController {
   public function Profile() {
     $form = new CFormUserProfile($this, $this->user);
     $form->Check();
-
-    $this->views->SetTitle('User Profile')
+	$users = new CMUser();
+	
+	if($this->user['isAuthenticated']){
+		$this->views->SetTitle('User Profile')
                 ->AddInclude(__DIR__ . '/profile.tpl.php', array(
                   'is_authenticated'=>$this->user['isAuthenticated'],
                   'user'=>$this->user,
                   'profile_form'=>$form->GetHTML(),
-				  ),'primary');
+				  ),'primary')
+				  ->AddInclude(__DIR__ . '/profile_sidebar.tpl.php', array(
+                  'is_authenticated'=>$this->user['isAuthenticated'],
+                  'user'=>$this->user,
+				  'isAdmin'=>$this->user['hasRoleAdmin'],
+				  'user_list_admins'=>$users->list_users(1),
+				  'user_list_users'=>$users->list_users(2),
+                  'profile_form'=>$form->GetHTML(),
+				  ),'sidebar');
+	}
+	
   }
+  
+	/**
+	* Make user an Admin.
+	*/
+	public function DoMakeAdmin($user) {
+		$users = new CMUser();
+		if($this->user['hasRoleAdmin']) {
+			if($users->UserMakeAdmin($user)){
+				$this->AddMessage('success', "Successfully added {$user} to Admins role.");
+			}else{
+				$this->AddMessage('error', "Failed to add {$user} to Admins role.");
+			}
+		}
+		$this->RedirectToController('profile');
+	}
+	
+	/**
+	* Remove user from Admin.
+	*/
+	public function DoRemoveAdmin($user) {
+		$users = new CMUser();
+		if($this->user['hasRoleAdmin']) {
+			if($users->UserRemoveAdmin($user)){
+				$this->AddMessage('success', "Successfully removed {$user} from Admins role.");
+			}else{
+				$this->AddMessage('error', "Failed to remove {$user} from Admins role.");
+			}
+		}
+		$this->RedirectToController('profile');
+	}
+
+  	/**
+	* Delete user Completely.
+	*/
+	public function DoDeleteUser($user) {
+		$users = new CMUser();
+		if($this->user['hasRoleAdmin']) {
+			$users->UserDeleteUser($user)>0;
+			$this->AddMessage('success', "Successfully deleted {$user} forever and ever.");
+		}
+		$this->RedirectToController('profile');
+	}
+
+  
   
 
   /**

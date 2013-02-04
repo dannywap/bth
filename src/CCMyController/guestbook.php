@@ -1,5 +1,5 @@
-<h1>Guestbook</h1>
-<p>Please post in our guestbook</p>
+<h1>Guestbook - Now with separated HTML, and also now with Views</h1>
+<p>Saving in DB with separated SQL</p>
 
 <form action="<?=$form_action?>" method='post'>
   <p>
@@ -8,10 +8,8 @@
   </p>
   <p>
     <input type='submit' name='doAdd' value='Add message' />
-	<?php if(CLydia::Instance()->user['isAuthenticated'] && CLydia::Instance()->user['hasRoleAdministrator']): ?>
-		<input type='submit' name='doClear' value='Clear all messages' />
-	<?php endif; ?>
-    <!--<input type='submit' name='doCreate' value='Create database table' /> -->
+    <input type='submit' name='doClear' value='Clear all messages' />
+    <input type='submit' name='doCreate' value='Create database table' />
   </p>
 </form>
 

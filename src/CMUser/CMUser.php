@@ -52,6 +52,11 @@ class CMUser extends CObject implements IHasSQL, IModule, ArrayAccess {
       'get group memberships' => 'SELECT * FROM Groups AS g INNER JOIN User2Groups AS ug ON g.id=ug.idGroups WHERE ug.idUser=?;',
       'update profile' => "UPDATE User SET name=?, email=?, updated=CURRENT_TIMESTAMP WHERE id=?;",
       'update password' => "UPDATE User SET password=?, updated=CURRENT_TIMESTAMP WHERE id=?;",
+      'select users by type' => "SELECT acronym FROM `User` u join User2Groups u2g on u.id=u2g.idUser where u2g.idGroups=?;",
+      'update user make admin' => "INSERT INTO User2Groups (idUser,idGroups) VALUES ((select id from User where acronym=?),1);",
+      'update user remove admin' => "DELETE FROM User2Groups where idGroups=1 and idUser=(select id from User where acronym=?);",
+      'delete user from all' => 'set @id=(SELECT id FROM `User` where acronym=?);delete from Content where idUser=@id; delete from User2Groups where idUser=@id;delete from User where id=@id;',
+
      );
     if(!isset($queries[$key])) {
       throw new Exception("No such SQL query, key '$key' was not found.");
@@ -229,10 +234,64 @@ class CMUser extends CObject implements IHasSQL, IModule, ArrayAccess {
       $this->AddMessage('error', "Failed to create user.");
       return false;
     }
+    $this->db->ExecuteQuery(self::SQL('insert into user2group'), array($this->db->LastInsertId(), 2));
+    if($this->db->RowCount() == 0) {
+      $this->AddMessage('error', "Failed to create user.");
+      return false;
+    }
     return true;
   }
   
-  
+	/**
+	* List users.
+	*
+	* @param $type int, the type of users to return
+	* @returns array with users.
+	*/
+	public function list_users($type) {
+		try {
+			return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select users by type'), array($type));
+		} catch(Exception $e) {
+			echo $e;
+			return null;
+		}
+	}
+	
+	/**
+	* Grant Admin rights.
+	*
+	* @param $user string, the acronym of user to add to admins
+	* @returns boolean true if success else false.
+	*/
+	public function UserMakeAdmin($user) {
+		$this->UserRemoveAdmin($user);
+		$this->db->ExecuteQuery(self::SQL('update user make admin'), array($user));
+		return $this->db->RowCount() === 1;
+	}
+	
+	/**
+	* Remove Admin rights.
+	*
+	* @param $user string, the acronym of user to remove from admins
+	* @returns boolean true if success else false.
+	*/
+	public function UserRemoveAdmin($user) {
+		$this->db->ExecuteQuery(self::SQL('update user remove admin'), array($user));
+		return $this->db->RowCount() === 1;
+	}
+	
+	/**
+	* Delete User.
+	*
+	* @param $user string, the acronym of user to delete from all tables
+	* @returns boolean true if success else false.
+	*/
+	public function UserDeleteUser($user) {
+		$this->db->ExecuteQuery(self::SQL('delete user from all'), array($user));
+		return $this->db->RowCount();
+	}
+
+	
   
 }
 ?>

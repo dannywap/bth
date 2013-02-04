@@ -20,11 +20,11 @@ class CCTheme extends CObject implements IController {
   public function Index() {
 	// $this->SomeRegionsGissa();
 	$this->OneRegion();
-	$this->views->SetTitle('Theme')
-				->AddInclude(__DIR__ . '/index.tpl.php', array(
-				  'theme_name' => $this->config['theme']['name'],
-				  'stylesheet' => $this->config['theme']['stylesheet'],
-				),'primary');
+	// $this->views->SetTitle('Theme')
+				// ->AddInclude(__DIR__ . '/index.tpl.php', array(
+				  // 'theme_name' => $this->config['theme']['path'],
+				  // 'stylesheet' => $this->config['theme']['stylesheet'],
+				// ),'primary');
 
   }
   
