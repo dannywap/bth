@@ -5,9 +5,9 @@
 <?php if($contents != null):?>
   <ul>
   <?php foreach($contents as $val):?>
-    <li><?=$val['id']?>, <?=$val['title']?> by <?=$val['owner']?> <a href='<?=create_url("content/edit/{$val['id']}")?>'>edit</a> <a href='<?=create_url("page/view/{$val['id']}")?>'>view</a>
+    <li><?=$val['id']?>, <?=$val['title']?> by <?=$val['owner']?> <a href='<?=create_url("page/view/{$val['id']}")?>'>view</a>
 	<?php if(CLydia::Instance()->user['isAuthenticated'] && (CLydia::Instance()->user['hasRoleAdmin'] || $val['owner']==CLydia::Instance()->user['acronym'])): ?>
-		<a href='<?=create_url("content/delete/{$val['id']}")?>'>delete</a>
+		<a href='<?=create_url("content/edit/{$val['id']}")?>'>edit</a> <a href='<?=create_url("content/delete/{$val['id']}")?>'>delete</a>
 	<?php endif ?>
 	</li>
   <?php endforeach; ?>

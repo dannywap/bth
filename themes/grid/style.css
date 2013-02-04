@@ -231,11 +231,13 @@ blockquote {
  margin-bottom: 1.375em;
 }
 strong,
-dfn {
+dfn,
+b {
  font-weight: bold;
 }
 em,
-dfn {
+dfn,
+i {
  font-style: italic;
 }
 pre {
@@ -247,6 +249,9 @@ code,
 tt,
 .code {
  font: 1em/1.375 "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+}
+small {
+ font-size: 0.8em;
 }
 li ul,
 li ol {
@@ -379,7 +384,7 @@ tfoot {
  color: red;
 }
 .smaller-text {
- font-size: 9px;
+ font-size: 0.8em;
 }
 #outer-wrap-header {
  margin-bottom: 25px;

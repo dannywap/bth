@@ -11,6 +11,10 @@
 
 /**
 * Set database(s). Step 1. In installation phase
+* Example:
+* $ly->config['database'][0]['dsn'] = 'mysql:host=localhost;dbname=mydb';
+* $ly->config['database'][0]['user'] = 'db_user';
+* $ly->config['database'][0]['password'] = 'P@ssword';
 */
 $ly->config['database'][0]['dsn'] = 'mysql:host=localhost;dbname=bookshare_eu';
 $ly->config['database'][0]['user'] = 'bookshare_eu';
@@ -24,12 +28,13 @@ $ly->config['database'][0]['password'] = 'templosenforskolan';
 */
 $ly->config['menus'] = array(
   'navbar' => array(
-    'home' => array('label'=>'Home', 'url'=>'home'),
+    '' => array('label'=>'Home', 'url'=>''),
     'modules' => array('label'=>'Modules', 'url'=>'modules'),
     'content' => array('label'=>'Content', 'url'=>'content'),
     'guestbook' => array('label'=>'Guestbook', 'url'=>'guestbook'),
     'blog' => array('label'=>'Blog', 'url'=>'blog'),
     'pages' => array('label'=>'Pages', 'url'=>'pages'),
+    'mypage' => array('label'=>'Mypage', 'url'=>'mypage'),
   ),
 );
 
@@ -53,11 +58,12 @@ $ly->config['routing'] = array(
 * Settings for the theme.
 */
 $ly->config['theme'] = array(
-  'path'            => 'themes/dannys',
+  'path'            => 'themes/grid',
   'parent'          => 'themes/grid',
-  'stylesheet'      => 'style.css',       // Main stylesheet to include in template files
+  'stylesheet'      => 'style.php',       // Main stylesheet to include in template files
   'template_file'   => 'index.tpl.php',   // Default template file, else use default.tpl.php
   // A list of valid theme regions
+  // Default - 'navbar','flash','featured-first','featured-middle','featured-last','primary','sidebar','triptych-first','triptych-middle','triptych-last','footer-column-one','footer-column-two','footer-column-three','footer-column-four','footer'
   'regions' => array('navbar','flash','featured-first','featured-middle','featured-last',
     'primary','sidebar','triptych-first','triptych-middle','triptych-last',
     'footer-column-one','footer-column-two','footer-column-three','footer-column-four',

@@ -166,7 +166,8 @@ class CMContent extends CObject implements IHasSQL, IModule, ArrayAccess {
    * @returns boolean true if success else false.
    */
   public function LoadById($id) {
-    $res = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * by id'), array($id));
+	$query=(is_numeric($id))?'select * by id':'select * by key';
+    $res = $this->db->ExecuteSelectQueryAndFetchAll(self::SQL($query), array($id));
     if(empty($res)) {
       $this->AddMessage('error', "Failed to load content with id '$id'.");
       return false;

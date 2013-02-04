@@ -14,11 +14,13 @@ class CCMycontroller extends CObject implements IController {
    * The page about me
    */
   public function Index() {
-    $content = new CMContent(1);
-    $this->views->SetTitle('About me'.htmlEnt($content['title']))
+    $content = new CMContent(10);
+    $this->views->SetTitle('My own controller ')
                 ->AddInclude(__DIR__ . '/page.tpl.php', array(
                   'content' => $content,
-                ));
+                ),'primary')
+                ->AddInclude(__DIR__ . '/sidebar.tpl.php', array(
+                ),'sidebar');
   }
 
 
@@ -30,7 +32,9 @@ class CCMycontroller extends CObject implements IController {
     $this->views->SetTitle('My blog')
                 ->AddInclude(__DIR__ . '/blog.tpl.php', array(
                   'contents' => $content->ListAll(array('type'=>'post', 'order-by'=>'title', 'order-order'=>'DESC')),
-                ));
+                ),'primary')
+                ->AddInclude(__DIR__ . '/sidebar.tpl.php', array(
+                ),'sidebar');
   }
 
 
@@ -49,10 +53,12 @@ class CCMycontroller extends CObject implements IController {
     }
    
     $this->views->SetTitle('My Guestbook')
-         ->AddInclude(__DIR__ . '/guestbook.tpl.php', array(
-            'entries'=>$guestbook->ReadAll(),
-            'form'=>$form,
-         ));
+				->AddInclude(__DIR__ . '/guestbook.tpl.php', array(
+					'entries'=>$guestbook->ReadAll(),
+					'form'=>$form,
+				 ),'primary')
+                ->AddInclude(__DIR__ . '/sidebar.tpl.php', array(
+                ),'sidebar');
   }
  
 
