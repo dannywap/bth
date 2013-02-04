@@ -28,7 +28,7 @@ Point your browser to following url to prepare modules by creating needed tables
 <p>3. Configure meny</br>
 Open file <i>"site/config.php"</i> and change second section to define your own items in the menu.</p>
 
-<p>4. Login and finilize</br>
+<p>4. Login and finalize</br>
 Login to you new website with root/root and setup needed users and access.
 <p><a href='<?=create_url("user","login")?>'>user/login</a></p>
 
