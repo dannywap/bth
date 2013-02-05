@@ -45,6 +45,7 @@ class CLydia implements ISingleton {
 		
 		// Create a object for the user
 		$this->user = new CMUser($this);
+		
 	}
 	  
 	  
@@ -193,6 +194,21 @@ class CLydia implements ISingleton {
 	* @returns string with the HTML representing the menu.
 	*/
 	public function DrawMenu($menu) {
+		// Add pages to menu - Like this:
+		// $tmparray=array('label'=>'dannys', 'url'=>'guestbook');
+		// array_push($this->config['menus']['navbar'], $tmparray);
+		$pages2menu = new CMMenu();
+		$rows=$pages2menu->check_for_table();
+		if($rows[0]['col1']!=0){
+			$pages=$pages2menu->list_pages();
+			foreach($pages as $page){
+				array_push($this->config['menus']['navbar'], array('label'=>ucfirst($page["key"]), 'url'=>'page/view/'.$page["key"]));
+			}
+		}
+
+
+		// array_push($this->config['menus'][$menu], array('dannys' => array('label'=>'dannys', 'url'=>'guestbook')));
+		// print_r($this->config['menus'][$menu]);
 		$items = null;
 		if(isset($this->config['menus'][$menu])) {
 		  foreach($this->config['menus'][$menu] as $val) {

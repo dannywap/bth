@@ -25,11 +25,12 @@
 	<p>
 		<a href='<?=create_url("user","create")?>' title='Create a new user account'>Create new user</a>
 	</p>
-<?php else: ?>
-	<h1>Your posts</h1>
-	<p>Hello user,<br> 
-	This is what I known about your profile:</p>
-
-	<p>You are anonymous and not authenticated.</p>
 <?php endif; ?>
+	<h1>Create content</h1>
+	<p><a href='<?=create_url("content","create")?>'>Create a new page</a><br> 
+	<a href='<?=create_url("content","create")?>'>Add a blog post</a><br>
+	<small>* To have a Blog in the menu you must enable it under <i>MENU DEFINITIONS</i> in site/config.php.</small></p>
+	<p><a href='<?=create_url("content")?>'>View all content</a><p>
+	
+
 

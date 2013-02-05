@@ -1,6 +1,6 @@
 <?php if($content['created']): ?>
   <h1>Edit Content</h1>
-  <p>You can edit and save this content.</p>
+  <p>You can edit and save this content. Use type "page" for pages and "post" for blog.</p>
 <?php else: ?>
   <h1>Create Content</h1>
   <p>Create new content.</p>

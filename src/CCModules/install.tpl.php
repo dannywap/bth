@@ -15,12 +15,9 @@
 			$result_create_new=1;
 			$myFile = LYDIA_INSTALL_PATH.'/src/CCIndex/index.tpl.php';
 			$fh = fopen($myFile, 'w') or $result_create_new=-1;
-			$stringData = <<<EOD
-<h1>My own website</h1><p>You have now successfully installed the BTH-framework and can start by editing this page (/src/CCIndex/index.tpl).</p>
-<p>But take some time to look around and learn the features before you start! ;)</p>
-<p>If you need any additional information have a look at README.md in root of project.</p>
-
-EOD
+			$stringData = '<h1>My own website</h1><p>You have now successfully installed the BTH-framework and can start by editing this page (/src/CCIndex/index.tpl).</p>
+			<p>But take some time to look around and learn the features before you start! ;)</p>
+			<p>If you need any additional information have a look at README.md in root of project.</p>';
 			fwrite($fh, $stringData);
 			fclose($fh);
 			if($result_rename && $result_create_new) : ?>

@@ -1,15 +1,21 @@
 <IfModule mod_rewrite.c>
   RewriteEngine on
   
+  
+  # NOTE: BTH Framework requires 'mod_rewrite' to be available to work. Having problems: Is the module enabled in "/etc/apache2/mods-enabled"?
   # For user to configure: 
   # Default root inst should look like:
   # 	RewriteBase / 
   # Or you can just comment away the row with a # in front of it.
   
-  RewriteBase /uppg8a
+  RewriteBase /uppg9b
   
   # Don't touch below...
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule (.*) index.php/$1 [NC,L]
+  
+  # Tell PHP that the mod_rewrite module is ENABLED.
+  SetEnv HTTP_MOD_REWRITE On
+  
 </IfModule>

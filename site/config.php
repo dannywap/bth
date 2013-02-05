@@ -10,37 +10,51 @@
 */
 
 /**
+* DATABASE SETUP
+* <First required step before starting the initial installation>
 * Set database(s). Step 1. In installation phase
 * Example:
 * $ly->config['database'][0]['dsn'] = 'mysql:host=localhost;dbname=mydb';
 * $ly->config['database'][0]['user'] = 'db_user';
 * $ly->config['database'][0]['password'] = 'P@ssword';
 */
+
 $ly->config['database'][0]['dsn'] = 'mysql:host=localhost;dbname=bookshare_eu';
 $ly->config['database'][0]['user'] = 'bookshare_eu';
 $ly->config['database'][0]['password'] = 'templosenforskolan';
 
 
+
+
 /**
-* Define menus. Step 3. In installation phase
+* MENU DEFINITION
+* <This is what you want to have a look at. The manual part of the menu bar of your website>
 *
-* Create hardcoded menus and map them to a theme region through $ly->config['theme'].
+* NOTE: All "Content" in db of type "page" will automatically be visible in menubar as a page.
+*
+* Define menus. Step 3. In installation phase
+* Create your own menus and map them to a theme region through $ly->config['theme'].
+* You can also just remove "comment"-mark in front of predefined menus you'd like to use.
 */
 $ly->config['menus'] = array(
   'navbar' => array(
-    '' => array('label'=>'Home', 'url'=>''),
-    'modules' => array('label'=>'Modules', 'url'=>'modules'),
-    'content' => array('label'=>'Content', 'url'=>'content'),
-    'guestbook' => array('label'=>'Guestbook', 'url'=>'guestbook'),
-    'blog' => array('label'=>'Blog', 'url'=>'blog'),
-    'pages' => array('label'=>'Pages', 'url'=>'pages'),
-    'mypage' => array('label'=>'Mypage', 'url'=>'mypage'),
+//    'modules' => array('label'=>'Modules', 'url'=>'modules'),			// <- Remove comment to show meny tab Modules (good for tech overview)
+//    'content' => array('label'=>'Content', 'url'=>'content'),			// <- Remove comment to show meny tab Content (show all pages and blog posts - techie style)
+//    'guestbook' => array('label'=>'Guestbook', 'url'=>'guestbook'),   // <- Remove comment to show meny tab Guestbook (a predefined Guestbook for your needs)
+//    'blog' => array('label'=>'Blog', 'url'=>'blog'),					// <- Remove comment to show meny tab Blog (a predifines blog)
+//    'pages' => array('label'=>'Pages', 'url'=>'pages'),				// <- Remove comment to show meny tab Pages (experiment)
+//    'mypage' => array('label'=>'Mypage', 'url'=>'mypage'),			// <- Remove comment to show meny tab MyPage (Example for how you can create your own component)
+//    'about' => array('label'=>'About', 'url'=>'page/view/about'),		// <- How content of type "page" is generated in the meny. Automated creation is a part of CLydia->DrawManu() function.
   ),
 );
 
-/**
+
+
+
+/** 
+* ROUTING TABLES
+* <Optional, to make shorter links >
 * Define a routing table for urls. - Create your own custom links to content
-*
 * Route custom urls to a defined controller/method/arguments
 */
 $ly->config['routing'] = array(
@@ -54,11 +68,15 @@ $ly->config['routing'] = array(
 );
 
 
-/**
+
+
+
+/** 
+* THEME SETTINGS
 * Settings for the theme.
 */
 $ly->config['theme'] = array(
-  'path'            => 'themes/grid',
+  'path'            => 'themes/grid',	  // <-- Set this to your own theme folder!
   'parent'          => 'themes/grid',
   'stylesheet'      => 'style.php',       // Main stylesheet to include in template files
   'template_file'   => 'index.tpl.php',   // Default template file, else use default.tpl.php
@@ -73,12 +91,12 @@ $ly->config['theme'] = array(
   'data' => array(
     'header' => '<h1>Here goes your title</h1>',
     'slogan' => 'And some extra text if you want.',
-    'favicon' => 'logo_80x80.png',
-    'logo' => 'logo_80x80.png',
+    'favicon' => 'logo_80x80.png',		// <-- Expected to be found in "path"-theme folder.
+    'logo' => 'logo_80x80.png',			// <-- Expected to be found in "path"-theme folder.
     'logo_width'  => 80,
     'logo_height' => 80,
     'footer' => <<<EOD
-<p>Uppgift 8 - Clean up and put in production</p>
+<p>Uppgift 9 - Last cleanup for production</p>
 
 <p>Docs:
 <a href="http://www.w3.org/2009/cheatsheet">cheatsheet</a>
@@ -95,9 +113,15 @@ EOD
 );
 
 
-/**
+
+
+
+/** 
+* DEFINING CONTROLLERS  
 * Define the controllers, their classname and enable/disable them.
-*
+* 
+* <This is required to modify if you create your own controller>
+* 
 * The array-key is matched against the url, for example:
 * the url 'developer/dump' would instantiate the controller with the key "developer", that is
 * CCDeveloper and call the method "dump" in that class. This process is managed in:
@@ -125,12 +149,15 @@ $ly->config['controllers'] = array(
 
 
 /************************************************************************
+* ADVANCED SETTING
+* <Usually not for you>
 * This is the Advanced section where you usually don't need to touch 
 * 
 */
 
 /**
 * Set level of error reporting
+* 0=off, -1=show all
 */
 error_reporting(-1);
 ini_set('display_errors', 1);
@@ -138,7 +165,7 @@ ini_set('display_errors', 1);
 /**
 * Set what to show as debug or developer information in the get_debug() theme helper.
 */
-$ly->config['debug']['display-lydia'] = true;
+$ly->config['debug']['display-lydia'] = false;
 
 
 /**
@@ -191,22 +218,6 @@ $ly->config['debug']['db-queries'] = true;
 * Allow or disallow creation of new user accounts.
 */
 $ly->config['create_new_users'] = true;
-
-
-/**
-* Settings for the theme.
-*/
-// $ly->config['theme'] = array(
-  // 'name'            => 'grid',            // The name of the theme in the theme directory
-  // 'stylesheet'      => 'style.php',       // Main stylesheet to include in template files
-  // 'template_file'   => 'index.tpl.php',   // Default template file, else use default.tpl.php
-  // // A list of valid theme regions
-  // 'regions' => array('flash','featured-first','featured-middle','featured-last',
-    // 'primary','sidebar','triptych-first','triptych-middle','triptych-last',
-    // 'footer-column-one','footer-column-two','footer-column-three','footer-column-four',
-    // 'footer',
-  // ),
-// );
 
 
 
