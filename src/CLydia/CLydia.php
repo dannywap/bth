@@ -202,7 +202,7 @@ class CLydia implements ISingleton {
 		if($this->is_fully_installed()){
 			$pages=$pages2menu->list_pages();
 			foreach($pages as $page){
-				array_push($this->config['menus']['navbar'], array('label'=>ucfirst($page["key"]), 'url'=>'page/view/'.$page["key"]));
+				array_push($this->config['menus'][$menu], array('label'=>ucfirst($page["key"]), 'url'=>'page/view/'.$page["key"]));
 			}
 		}
 
