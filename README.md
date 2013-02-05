@@ -15,21 +15,20 @@ Initial config:
 
 1. Config database connection
 
-	Open file "site/config.php" and change first section to give BTH access to your database.
-	Example:
-	$ly->config['database'][0]['dsn'] = 'mysql:host=localhost;dbname=mydb';
-	$ly->config['database'][0]['user'] = 'db_user';
-	$ly->config['database'][0]['password'] = 'P@ssword';
+	Open file "site/config.php" and change first section to give BTH access to your database.<br>
+	<i>Example:<br>
+	$ly->config['database'][0]['dsn'] = 'mysql:host=localhost;dbname=mydb';<br>
+	$ly->config['database'][0]['user'] = 'db_user';<br>
+	$ly->config['database'][0]['password'] = 'P@ssword';<br></i>
 
 2. Verify environment
 
-	Point your browser to the installation folder and run
+	Point your browser to the installation folder and run:<br>
 	/install.php
 
 3. Login and finalize
 
 	Login to you new website with root/root and setup needed users and access.
-	user/login
 
 <h3>Extra goodies</h3>
 

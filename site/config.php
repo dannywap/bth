@@ -96,7 +96,7 @@ $ly->config['theme'] = array(
     'logo_width'  => 80,
     'logo_height' => 80,
     'footer' => <<<EOD
-<p>Uppgift 9 - Last cleanup for production</p>
+<p>Here goes your footer.</p>
 
 <p>Docs:
 <a href="http://www.w3.org/2009/cheatsheet">cheatsheet</a>

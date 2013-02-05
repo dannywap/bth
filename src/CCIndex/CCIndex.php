@@ -16,13 +16,19 @@ class CCIndex extends CObject implements IController {
 	/**
 	* Implementing interface IController. All controllers must have an index action.
 	*/
-	public function Index() {         
+	public function Index() { 
 		$modules = new CMModules();
 		$controllers = $modules->AvailableControllers();
 		$allModules = $modules->ReadAndAnalyse();
-		$this->views->SetTitle('Index Controller')
-					->AddInclude(__DIR__ . '/index.tpl.php', array('controllers'=>$controllers), 'primary')
-					->AddInclude(__DIR__ . '/sidebar.tpl.php',  array('controllers'=>$controllers), 'sidebar');
+		if(CLydia::Instance()->is_fully_installed()){
+			$this->views->SetTitle('Index Controller')
+						->AddInclude(__DIR__ . '/index.tpl.php', array('controllers'=>$controllers), 'primary');
+		}else{
+			$this->views->SetTitle('Index Controller')
+						->AddInclude(__DIR__ . '/preinstalled.tpl.php', array('controllers'=>$controllers), 'primary')
+						->AddInclude(__DIR__ . '/sidebar.tpl.php',  array('controllers'=>$controllers), 'sidebar');
+
+		}
 	}
 	
 	/**

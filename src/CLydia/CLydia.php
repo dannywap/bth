@@ -198,8 +198,8 @@ class CLydia implements ISingleton {
 		// $tmparray=array('label'=>'dannys', 'url'=>'guestbook');
 		// array_push($this->config['menus']['navbar'], $tmparray);
 		$pages2menu = new CMMenu();
-		$rows=$pages2menu->check_for_table();
-		if($rows[0]['col1']!=0){
+		// $rows=$pages2menu->check_for_table();
+		if($this->is_fully_installed()){
 			$pages=$pages2menu->list_pages();
 			foreach($pages as $page){
 				array_push($this->config['menus']['navbar'], array('label'=>ucfirst($page["key"]), 'url'=>'page/view/'.$page["key"]));
@@ -224,7 +224,19 @@ class CLydia implements ISingleton {
 		return "<ul class='menu {$menu}'>\n{$items}</ul>\n";
 	}
 
-	
+	/**
+	* Is fully installed.
+	*
+	* @returns true or false indicating whether Lydia was installed correctly or not (Needed for not attempting read on nonexisting DB for menu handling).
+	*/
+	public function is_fully_installed() {
+		if(file_exists(LYDIA_INSTALL_PATH.'/site/installed.flag')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	
 }
 ?>

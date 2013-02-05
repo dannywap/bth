@@ -27,7 +27,7 @@ class CMMenu extends CObject implements IHasSQL {
 
 	public static function SQL($key=null) {
 		$queries = array(
-			'check if table setup' => "SELECT COUNT(*) as col1 FROM information_schema.tables WHERE table_name = 'Content';",
+			// 'check if table setup' => "SELECT COUNT(*) as col1 FROM information_schema.tables WHERE table_name = 'Content';",
 			'select all keys where pages' => "SELECT `key` FROM Content WHERE TYPE = 'page';",
 		);
 		if(!isset($queries[$key])) {
@@ -37,10 +37,9 @@ class CMMenu extends CObject implements IHasSQL {
 	}
   
   	/**
-	* List users.
+	* List pages.
 	*
-	* @param $type int, the type of users to return
-	* @returns array with users.
+	* @returns array with pages.
 	*/
 	public function list_pages() {
 		try {
@@ -52,18 +51,20 @@ class CMMenu extends CObject implements IHasSQL {
 	}
 	
   	/**
-	* List users.
+	* Check_for_table.
 	*
-	* @param $type int, the type of users to return
-	* @returns array with users.
+	* @returns array with number of hits.
 	*/
-	public function check_for_table() {
-		try {
-			return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('check if table setup'));
-		} catch(Exception $e) {
-			echo $e;
-			return null;
-		}
-	}
+	// - DO NOT USE! My webhost disabled my site due to enourmus amount of duplicates of this sql-query:
+	// public function check_for_table() {
+		// try {
+			// return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('check if table setup'));
+		// } catch(Exception $e) {
+			// echo $e;
+			// return null;
+		// }
+	// }  	
+	
+	
 }
 ?>
