@@ -25,8 +25,7 @@ Initial config:
 
 2. Verify environment
 
-	Point your browser to the installation folder and run:<br>
-	/install.php
+	Point your browser to the installation folder and run the setup.
 
 3. Login and finalize
 
