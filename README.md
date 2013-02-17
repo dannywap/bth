@@ -7,8 +7,10 @@ Download:
 	You can review the source directly at https://github.com/dannywap/bth
 
 Initial config:
-	
+
+	Grant php full access to folder "site/data" (chmod 777 /site/data)
 	Open .htaccess in root and make sure to set "RewriteBase" according to your installation path or comment it away if root installation.
+
 
 
 <h3>Installation</h3>
