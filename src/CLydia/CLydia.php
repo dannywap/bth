@@ -230,7 +230,7 @@ class CLydia implements ISingleton {
 	* @returns true or false indicating whether Lydia was installed correctly or not (Needed for not attempting read on nonexisting DB for menu handling).
 	*/
 	public function is_fully_installed() {
-		if(file_exists(LYDIA_INSTALL_PATH.'/site/installed.flag')) {
+		if(file_exists(LYDIA_INSTALL_PATH.'/site/data/installed.flag')) {
 			return true;
 		} else {
 			return false;

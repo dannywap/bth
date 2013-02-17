@@ -1,53 +1,68 @@
-<h1>Installing BTH framework</h1>
-<p>This is the default Controller (CCIndex) and where you start the setup of BTH framework.</p>
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'/>
+	<title>Installing BTH Framework</title>
+	<link rel='stylesheet' href='themes/core/style.css'/>
+</head>
+<body>
+<div>
+<h1>BTH framework installation</h1>
+<p>Some settings are required for BTH framework to run properly. These tests verify that.</p>
+</div>
+<?php
+global $success;
+function is_mod_rewrite_enabled() {
+	if ($_SERVER['HTTP_MOD_REWRITE'] == 'On') {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
 
-<!-- <p><b>Download:</b><br>
+if(is_mod_rewrite_enabled()): $success+=1; ?>
+<div class="success">
+<h2>Successfully verified your server has the mod_rewrite enabled</h2>
+<p>You should be able to configure .htaccess. Please review more info about this quick step found in the .htaccess-file.</p>
+</div>
+<? else: ?>
+<div class="alert">
+<h2>Problem: It seem like your server does not have the mod_rewrite enabled</h2>
+<p>You will not be able to configure .htaccess according to needed settings.</p>
+<ul>
+    <li>To check if mod_rewrite module is enabled, create a new php file in yur root folder of your WAMP/LAMP server. Enter the following<br>
+    phpinfo();</li>
 
-	First, make sure to download the latest version of BTH from github:<br>
-	git clone git://github.com/dannywap/bth.git<br>
-	You can review the source directly at https://github.com/dannywap/bth</p>
+    <li>Access your created file from your browser.</li>
 
-<p><b>Initial config:</b><br>
-	
-	<p>Open .htaccess in root and make sure to set "RewriteBase" according to your installation path or comment it away if root installation.</p> -->
+    <li>Ctrl+F to open a search. Search for 'mod_rewrite'. If it is enabled you see it as 'Loaded Modules'</li>
 
-<h3>Installation</h3>
-<p><b>1. Config database connection</b><br>
-	Open file "site/config.php" and change first section to give BTH access to your database.<p>
-	
-	<p><i>Example:</br>
-	<small>
-	$ly->config['database'][0]['dsn'] = 'mysql:host=localhost;dbname=mydb';<br>
-	$ly->config['database'][0]['user'] = 'db_user';<br>
-	$ly->config['database'][0]['password'] = 'P@ssword';<br>
-	</small></i></p>
+    <li>If not, open httpd.conf (Apache Config file) and look for the following line.<br>
+    #LoadModlie rewrite_modlie modlies/mod_rewrite.so</li>
 
-<p><b>2. Install modules</b><br>
-	Point your browser to following url to prepare modules by creating needed tables in database:</p>
-	
-	<p><a href='<?=create_url("modules","install")?>'>modules/install</a></p>
+    <li>remove the pound ('#') sign at the start and save the this file.</li>
 
-<p><b>3. Login and finalize</b><br>
-	Login to you new website with root/root and setup needed users and access.</p>
-	
-	<p><a href='<?=create_url("user","login")?>'>user/login</a></p>
+    <li>Restart your apache server.</li>
 
-	
-<h1>Extra goodies</h1>
-<p><b>Add plugins</b><br>
-Open file "site/config.php" and change second section ("MENU DEFINITION") to add Guestbook or Blog to your menu.</p>
+    <li>Access the same php file in your browser.</li>
 
+    <li>search for 'mod_rewrite' again. You sholid be able to find it now.</li>
+</ul>
+</div>
+<? endif ?>
+<?php if(version_compare(PHP_VERSION, '5.0.0', '>=')): $success+=1; ?>
+<div class="success"><h2>Successfully verified your server has correct PHP version</h2>
+Good your PHP version <?=PHP_VERSION?> is higher than 5.0.0.</div>
+<? else: ?>
+<div class="alert"><h2>Problem: Your PHP version is too old</h2>
+Unfortunatelly this framework requires at least PHP v5.0. Your version <?=PHP_VERSION?> is outdated. You can update it here.</div>';
+<? endif; ?>
 
-Naming standard is:</p>
+<?php if($success>1): ?>
 
-    <p>CC* is a controller class.<br>
-    CM* is a model class.<br>
-    C* is a ordinary class without any specific category.<br>
-    I* is interface classes.</p>
-
-<p>Files of interest:</p>
-	<p><small>/.htaccess 			- Where you setup installation path of BTH.<br>
-	/site/config.php 	- Where you can configure: database connection, menu, logo, titles and footer, activate/deactive modules, customize css-theme-path and avaliable regions.<br>
-	/site/themes/xxx	- Where you put your own theme as mentioned in config.php (inherits grid-theme by Default).<br>
-	/src/CCxxx			- Create your own controllers then enable/link to them from your menu by setting it up in config.php.</small></p>
-
+<h1>Successfully confirmed</h1>
+<p>Before clicking continue doublecheck your .htaccess configuration or you <u>will</u> the 404 message!.<p>
+<div class="success"><p><a href="modules/install">Continue >></a></p></div>
+<? else: ?>
+<h1>You can not start installation unless this problem is fixed :(</h1>
+<? endif; ?>

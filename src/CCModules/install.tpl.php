@@ -15,7 +15,7 @@
 		<?php 
 			 if(!isset($result_total)){
 				// Rename not_installed.flag to installed.flag so that CCMenu can start reading DB.
-				if(file_exists(LYDIA_INSTALL_PATH.'/site/not_installed.flag')){rename(LYDIA_INSTALL_PATH.'/site/not_installed.flag',LYDIA_INSTALL_PATH.'/site/installed.flag');}
+				if(file_exists(LYDIA_INSTALL_PATH.'/site/data/not_installed.flag')){rename(LYDIA_INSTALL_PATH.'/site/data/not_installed.flag',LYDIA_INSTALL_PATH.'/site/data/installed.flag');}
 				// Rename old CCIndex/Index.tpl.php and create a new nicer one.
 				// $result_rename=rename(LYDIA_INSTALL_PATH.'/src/CCIndex/index.tpl.php',LYDIA_INSTALL_PATH.'/src/CCIndex/index.tpl_can_be_deleted.php');
 				// $result_create_new=1;
